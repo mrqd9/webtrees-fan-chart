@@ -36,6 +36,13 @@
     unicode-bidi: plaintext;
 }
 
+#webtrees-fan-chart-container svg .name .marriage-date {
+    fill: rgb(127, 127, 127);
+    font-weight: normal;
+    direction: ltr;
+    unicode-bidi: plaintext;
+}
+
 div.tooltip {
     position: absolute;
     text-align: center;

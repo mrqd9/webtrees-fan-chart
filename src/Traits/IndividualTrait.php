@@ -79,6 +79,7 @@ trait IndividualTrait
             'death'            => strip_tags($individual->getDeathDate()->display()),
             'marriage'         => $this->getMarriageDate($individual),
             'timespan'         => $this->getLifetimeDescription($individual),
+            'marriage'         => $this->getParentMarriageDate($individual),
             'color'            => $this->getColor($individual),
             'colors'           => [[], []],
         ];
@@ -122,6 +123,18 @@ trait IndividualTrait
 
         if ($individual->isDead()) {
             return I18N::translate('Deceased');
+        }
+
+        return '';
+    }
+
+    private function getParentMarriageDate(Individual $individual): string
+    {
+        /** @var Family $family */
+        $family = $individual->childFamilies()->first();
+
+        if ($family) {
+            return strip_tags($family->getMarriageDate()->display());
         }
 
         return '';
